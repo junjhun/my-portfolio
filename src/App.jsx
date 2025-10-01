@@ -72,12 +72,11 @@ const ProjectTwoDetail = () => (
             <ul className="list-disc list-inside space-y-2 text-gray-700 pl-4">
                 <li>**Full-Stack Build:** Built the custom storefront themes using **WordPress/Shopify** coupled with dynamic front-end components developed in **ReactJS**.</li>
                 <li>**Integration Logic:** Engineered the custom backend REST APIs using **Vanilla PHP** and **MySQL** to synchronize inventory, order processing, and customer data in real-time.</li>
-                <li>**Project Management:** Managed the project end-to-end, covering scoping, client consultation, development, and final load testing (demonstrating PM skills).</li>
+                <li>**Project Management:** Managed the project end-to-end, covering scoping, client consultation, development, and final load testing.</li>
             </ul>
 
             <h4 className="font-semibold text-lg text-emerald-600">Key Result</h4>
             <p className="text-gray-700 font-medium">Successfully integrated the new platform, **reducing manual inventory reconciliation errors by 85%** and decreasing fulfillment time by one business day. The platform saw a **25% increase in conversion rate** post-launch.</p>
-            <a href="#" className="text-emerald-600 hover:text-emerald-700 font-medium transition duration-200">View Public GitHub Repository (Placeholder) &rarr;</a>
         </div>
     </div>
 );
