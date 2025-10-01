@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Linkedin, Phone, MapPin, Code, Aperture, BookOpen, Layers, Zap } from 'lucide-react';
 
 // --- Profile Image URL ---
+// FIX APPLIED: Changed path to relative asset in public/ folder.
 const PROFILE_IMAGE_URL = '/AnimeMe2.png';
 
 // --- Project Data Definitions ---
@@ -110,10 +111,10 @@ const ProjectThreeDetail = () => (
 const App = () => {
     // State to handle which project's details are currently displayed
     const [activeProject, setActiveProject] = useState(projectData[0].id);
-    const [isLoaded, setIsLoaded] = useState(false); // New state for fade-in animation
+    const [isLoaded, setIsLoaded] = useState(false);
 
-    // Use useEffect to trigger the fade-in animation once components are mounted
-    React.useEffect(() => {
+    // Trigger fade-in animation on mount
+    useEffect(() => {
         setIsLoaded(true);
     }, []);
 
@@ -134,21 +135,17 @@ const App = () => {
     // Function to handle click and smooth scroll to the detail section
     const handleProjectClick = (id) => {
         setActiveProject(id);
-        // Delay scroll slightly to allow React state to update
-        setTimeout(() => {
-            document.getElementById('project-details').scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+        document.getElementById('project-details').scrollIntoView({ behavior: 'smooth' });
     };
 
     // Component for Contact Icon and Text
-    const ContactInfo = ({ icon: Icon, text, link, delay = 0 }) => (
+    const ContactInfo = ({ icon: Icon, text, link, style }) => (
         <a
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center space-x-2 text-sm text-gray-600 hover:text-emerald-600 transition duration-200 
-            transform translate-y-2 opacity-0 ${isLoaded ? 'animate-fade-in-up' : ''}`}
-            style={{ animationDelay: `${delay}ms` }}
+            className="flex items-center space-x-2 text-sm text-gray-600 hover:text-emerald-600 transition duration-200 opacity-0 translate-y-2"
+            style={style}
         >
             <Icon size={16} className="text-emerald-500 min-w-4" />
             <span>{text}</span>
@@ -184,6 +181,8 @@ const App = () => {
         </div>
     );
 
+    const baseAnimationClass = isLoaded ? 'animate-fade-in-up' : 'opacity-0 translate-y-2';
+
 
     return (
         <div className="min-h-screen bg-slate-50 font-sans">
@@ -192,47 +191,39 @@ const App = () => {
             <header className="bg-white shadow-lg py-10 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
 
-                    {/* Photo - ANIMATED */}
+                    {/* Photo */}
                     <img
                         src={PROFILE_IMAGE_URL}
                         alt="Felino Calderon III Professional Headshot"
-                        // 🎯 CRITICAL CHANGE: Added 'object-top' to position the image upwards in the crop
-                        className={`w-40 h-40 rounded-full object-cover object-top ring-4 ring-emerald-500/50 shadow-2xl mb-6 
-                            transform translate-y-2 opacity-0 transition-opacity duration-700 ${isLoaded ? 'animate-fade-in-up' : ''}`}
-                        style={{ animationDelay: '100ms' }}
+                        className={`w-40 h-40 rounded-full object-cover object-top ring-4 ring-emerald-500/50 shadow-2xl mb-6 transition duration-1000 ${baseAnimationClass}`}
+                        style={{ animationDelay: '200ms' }}
                         onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/160x160/cccccc/333333?text=Profile"; }}
                     />
 
-                    {/* Name and Title - ANIMATED */}
+                    {/* Name and Title */}
                     <h1
-                        className={`text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-1 
-                            transform translate-y-2 opacity-0 ${isLoaded ? 'animate-fade-in-up' : ''}`}
+                        className={`text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-1 transition duration-1000 ${baseAnimationClass}`}
                         style={{ animationDelay: '300ms' }}
                     >
                         FELINO CALDERON III
                     </h1>
                     <h2
-                        className={`text-xl sm:text-2xl font-semibold text-emerald-600 uppercase tracking-widest mb-6 
-                            transform translate-y-2 opacity-0 ${isLoaded ? 'animate-fade-in-up' : ''}`}
-                        style={{ animationDelay: '500ms' }}
+                        className={`text-xl sm:text-2xl font-semibold text-emerald-600 uppercase tracking-widest mb-6 transition duration-1000 ${baseAnimationClass}`}
+                        style={{ animationDelay: '400ms' }}
                     >
                         Technical Project Leader <span className="text-gray-400">|</span> Full-Stack Expert
                     </h2>
 
-                    {/* Contact Block - ANIMATED with staggered delay */}
+                    {/* Contact Block */}
                     <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-8">
-                        <ContactInfo icon={Mail} text="junjhun.calderon.work@gmail.com" link="mailto:junjhun.calderon.work@gmail.com" delay={700} />
-                        <ContactInfo icon={Phone} text="+63-960-278-6605" link="tel:+639602786605" delay={800} />
-                        <ContactInfo icon={Linkedin} text="LinkedIn Profile" link="https://www.linkedin.com/in/felino-calderon-iii-615a64155/" delay={900} />
-                        <ContactInfo icon={MapPin} text="General Trias, Cavite, PH" link="#" delay={1000} />
+                        <ContactInfo icon={Mail} text="junjhun.calderon.work@gmail.com" link="mailto:junjhun.calderon.work@gmail.com" style={{ animationDelay: '500ms' }} />
+                        <ContactInfo icon={Phone} text="+63-960-278-6605" link="tel:+639602786605" style={{ animationDelay: '600ms' }} />
+                        <ContactInfo icon={Linkedin} text="LinkedIn Profile" link="https://www.linkedin.com/in/felino-calderon-iii-615a64155/" style={{ animationDelay: '700ms' }} />
+                        <ContactInfo icon={MapPin} text="General Trias, Cavite, PH" link="#" style={{ animationDelay: '800ms' }} />
                     </div>
 
-                    {/* Professional Overview - ANIMATED */}
-                    <div
-                        className={`max-w-4xl pt-4 border-t border-gray-200 
-                            transform translate-y-2 opacity-0 ${isLoaded ? 'animate-fade-in-up' : ''}`}
-                        style={{ animationDelay: '1200ms' }}
-                    >
+                    {/* Professional Overview */}
+                    <div className="max-w-4xl pt-4 border-t border-gray-200">
                         <p className="text-lg text-gray-700 leading-relaxed">
                             **Technical Project Leader** and **Full-Stack Expert** with **11 years of broad IT experience**. Over 4 dedicated years in the Software Development Lifecycle, specializing in application development, database management, and technical support. Proven ability to lead development teams, manage billable projects, and drive initiatives from conception to completion. Currently leveraging a Master's in Information System and certifications (**ITIL, Lean Six Sigma**) to guide technical strategy and process optimization for high-impact freelance roles.
                         </p>
@@ -256,8 +247,7 @@ const App = () => {
                             <div
                                 key={project.id}
                                 onClick={() => handleProjectClick(project.id)}
-                                // ENHANCED HOVER ANIMATION: Slightly larger scale, stronger shadow
-                                className={`bg-white p-6 rounded-xl shadow-md cursor-pointer transition duration-300 transform hover:shadow-xl hover:scale-[1.02] hover:-translate-y-1 ${
+                                className={`bg-white p-6 rounded-xl shadow-md cursor-pointer transition duration-300 transform hover:shadow-xl hover:-translate-y-1 ${
                                     activeProject === project.id ? 'ring-4 ring-emerald-500/50 border-t-4 border-emerald-600' : 'ring-1 ring-gray-100'
                                 }`}
                             >
