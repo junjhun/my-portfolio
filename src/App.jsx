@@ -3,7 +3,7 @@ import { Mail, Linkedin, Phone, MapPin, Code, Aperture, BookOpen, Layers, Zap } 
 
 // --- Profile Image URL ---
 // FIX APPLIED: Changed path to relative asset in public/ folder.
-const PROFILE_IMAGE_URL = '/AnimeMe2.png';
+const PROFILE_IMAGE_URL = 'https://junjhun.github.io/my-portfolio/AnimeMe2.png';
 
 // --- Project Data Definitions ---
 const projectData = [
