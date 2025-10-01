@@ -105,6 +105,21 @@ const ProjectThreeDetail = () => (
     </div>
 );
 
+const DOWNLOAD_FILE_PATH = './Calderon_Felino_CV-Public.pdf';
+const DownloadCVButton = ({ initialAnimationClass }) => (
+    <a
+        href={DOWNLOAD_FILE_PATH}
+        // 'download' attribute ensures the file is downloaded, not just opened
+        download
+        className={`mt-4 mb-6 px-8 py-3 text-lg font-bold rounded-lg shadow-xl 
+                   text-white bg-emerald-600 hover:bg-emerald-700 
+                   transition duration-300 transform hover:scale-105 ${initialAnimationClass}`}
+        style={{ animationDelay: '1500ms' }}
+    >
+        Download Full CV (PDF)
+    </a>
+);
+
 
 // --- Main Application Component ---
 const App = () => {
@@ -236,6 +251,8 @@ const App = () => {
                             **Technical Project Leader** and **Full-Stack Expert** with **11 years of broad IT experience**. Over 4 dedicated years in the Software Development Lifecycle, specializing in application development, database management, and technical support. Proven ability to lead development teams, manage billable projects, and drive initiatives from conception to completion. Currently leveraging a Master's in Information System and certifications (**ITIL, Lean Six Sigma**) to guide technical strategy and process optimization for high-impact freelance roles.
                         </p>
                     </div>
+
+                    <DownloadCVButton initialAnimationClass={`transform translate-y-2 opacity-0 transition-opacity duration-900 ${isLoaded ? 'animate-fade-in-up' : ''}`} />
 
                 </div>
             </header>
