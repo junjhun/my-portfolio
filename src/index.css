@@ -1,0 +1,17 @@
+/* Ensure the base CSS includes the Tailwind directives.
+These must be present for Tailwind CSS classes to work.
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom global styles if needed */
+/* For example, setting a default font family */
+
+/* Inter is the assumed default font for most modern web UIs */
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+  }
+}
